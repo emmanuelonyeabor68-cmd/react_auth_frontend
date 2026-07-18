@@ -17,17 +17,20 @@ const Dashboard = () => {
             window.history.replaceState({}, document.title, '/dashboard')
             return
         }
+
         if (loading) return
-        if (!accessToken) {
+        if (!accessToken && !googleToken) {
             navigate('/login')
             return
         }
+
+        const tokenToUse = googleToken || accessToken
 
         const fetchUser = async () => {
             try {
                 const response = await api.get('/api/auth/users/me/', {
                     headers: {
-                        Authorization: `Bearer ${accessToken}`
+                        Authorization: `Bearer ${tokenToUse}`
                     }
                 })
                 setUser(response.data)
