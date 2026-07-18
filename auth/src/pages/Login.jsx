@@ -19,6 +19,10 @@ const Login = () => {
         setFormData({ ...formData, [e.target.name]: e.target.value })
     }
 
+    const handleGoogleLogin = () => {
+        window.location.href = 'https://django-auth-biolerplate.onrender.com/social-auth/login/google-oauth2/'
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault()
         setLoading(true)
@@ -69,6 +73,14 @@ const Login = () => {
                         {loading ? 'Logging in...' : 'Login'}
                     </button>
                 </form>
+
+                <button
+                type='button'
+                onClick={handleGoogleLogin}
+                className='w-full boarder border-gray-300 text-gray-700 py-8 rounded hover:bg bg-gray-50 flex items-center justify-center gap-2'>
+                    <img src="https://www.google.com/favicon.ico" className='w-4 h-4'/>
+                    Continue with Google
+                </button>
 
                 <p className="text-center text-sm mt-4">
                     Don't have an account?{' '}

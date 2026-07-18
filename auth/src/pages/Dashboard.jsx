@@ -8,6 +8,15 @@ const Dashboard = () => {
     const navigate = useNavigate()
 
     useEffect(() => {
+
+        const params = new URLSearchParams(window.location.search)
+        const googleToken = params.get("access") 
+
+        if (googleToken) {
+            login(googleToken)
+            window.history.replaceState({}, document.title, '/dashboard')
+            return
+        }
         if (loading) return
         if (!accessToken) {
             navigate('/login')
