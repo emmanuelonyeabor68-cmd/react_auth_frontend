@@ -15,7 +15,6 @@ const Dashboard = () => {
         if (googleToken) {
             login(googleToken)
             window.history.replaceState({}, document.title, '/dashboard')
-            return
         }
 
         if (loading) return
