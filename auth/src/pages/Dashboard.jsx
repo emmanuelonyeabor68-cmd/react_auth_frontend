@@ -12,18 +12,19 @@ const Dashboard = () => {
         const params = new URLSearchParams(window.location.search)
         const googleToken = params.get("access") 
 
+        const tokenToUse = googleToken || accessToken
+
+        if (!tokenToUse && !loading) {
+            navigate('/login')
+        }
+
+        if (!tokenToUse) return
+
         if (googleToken) {
             login(googleToken)
             window.history.replaceState({}, document.title, '/dashboard')
         }
 
-        if (loading) return
-        if (!accessToken && !googleToken) {
-            navigate('/login')
-            return
-        }
-
-        const tokenToUse = googleToken || accessToken
 
         const fetchUser = async () => {
             try {
