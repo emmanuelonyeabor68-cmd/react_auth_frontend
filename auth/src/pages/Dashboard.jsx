@@ -4,7 +4,7 @@ import api from '../api/axios'
 import { useAuth } from '../context/AuthContext'
 
 const Dashboard = () => {
-    const { accessToken, user, setUser, logout, loading } = useAuth()
+    const { accessToken, user, setUser, logout, loading, login } = useAuth()
     const navigate = useNavigate()
 
     useEffect(() => {
